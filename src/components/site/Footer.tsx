@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
+import { useAuth } from "@/lib/auth";
 
 export function Footer() {
+  const { isAdmin } = useAuth();
   return (
     <footer className="mt-24 border-t border-border/60 bg-secondary/40">
       <div className="container-page grid gap-10 py-12 md:grid-cols-4">
@@ -24,6 +26,13 @@ export function Footer() {
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
             <li><Link to="/auth" className="hover:text-primary">Sign in</Link></li>
             <li><Link to="/account" className="hover:text-primary">Profile</Link></li>
+            {isAdmin && (
+              <li>
+                <Link to="/admin" className="hover:text-primary text-accent">
+                  Admin Panel
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
